@@ -35,7 +35,7 @@ namespace TravelerAppWebService.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<User>> CreateTrain(Train train)
+        public async Task<ActionResult<Train>> CreateTrain(Train train)
         {
             // Implement validation and error handling as needed
 
