@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TravelerAppService.Models;
+using TravelerAppService.Services;
 using TravelerAppWebService.Services.Interfaces;
 
 namespace TravelerAppWebService.Controllers
@@ -31,6 +32,18 @@ namespace TravelerAppWebService.Controllers
                 return NotFound();
             }
             return Ok(train);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<User>> CreateTrain(Train train)
+        {
+            // Implement validation and error handling as needed
+
+            // Call the service to create the train
+            await _trainService.CreateAsync(train);
+
+            // Return the created train with a 201 Created status code
+            return CreatedAtAction(nameof(GetTrainById), new { id = train.Id }, train);
         }
 
         [HttpPut("{id}")]

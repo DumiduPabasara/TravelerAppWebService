@@ -33,6 +33,18 @@ namespace TravelerAppWebService.Controllers
             return Ok(user);
         }
 
+        [HttpPost]
+        public async Task<ActionResult<User>> CreateUser(User user)
+        {
+            // Implement validation and error handling as needed
+
+            // Call the service to create the user
+            await _userService.CreateAsync(user);
+
+            // Return the created user with a 201 Created status code
+            return CreatedAtAction(nameof(GetUserById), new { id = user.Id }, user);
+        }
+
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateUser(string id, User user)
         {
